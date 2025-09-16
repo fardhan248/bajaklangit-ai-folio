@@ -15,6 +15,7 @@ export default {
     extend: {
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
+        bonum: ['"TeX Gyre Bonum"', 'serif']
       },
       colors: {
         border: "hsl(var(--border))",
@@ -95,4 +96,5 @@ export default {
     },
   },
   plugins: [require("tailwindcss-animate")],
+
 } satisfies Config;

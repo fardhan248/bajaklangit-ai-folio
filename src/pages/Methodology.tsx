@@ -10,6 +10,8 @@ import {
   Cloud,
   Radio
 } from "lucide-react";
+import db from "@/assets/dashboard.png";
+import wa from "@/assets/whatsapp.png";
 
 const Methodology = () => {
   return (
@@ -203,9 +205,14 @@ const Methodology = () => {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="aspect-video bg-gradient-to-br from-primary/5 to-secondary/5 rounded-lg flex items-center justify-center mb-4">
-                    <div className="text-center">
-                      <Monitor className="w-12 h-12 text-primary/60 mx-auto mb-2" />
-                      <p className="text-sm text-muted-foreground">Dashboard Preview</p>
+                    <div className="aspect-video overflow-hidden">
+                      <img
+                      src={db}
+                      alt="dashboard"
+                      className="w-full h-full object-cover"
+                      />
+                      {/* <Monitor className="w-12 h-12 text-primary/60 mx-auto mb-2" />
+                      <p className="text-sm text-muted-foreground">Dashboard Preview</p> */}
                     </div>
                   </div>
                   <p className="text-muted-foreground">
@@ -239,9 +246,14 @@ const Methodology = () => {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="aspect-video bg-gradient-to-br from-secondary/5 to-primary/5 rounded-lg flex items-center justify-center mb-4">
-                    <div className="text-center">
-                      <Smartphone className="w-12 h-12 text-secondary/60 mx-auto mb-2" />
-                      <p className="text-sm text-muted-foreground">WhatsApp Bot Interface</p>
+                    <div className="aspect-video overflow-hidden">
+                      <img
+                      src={wa}
+                      alt="whatsapp"
+                      className="w-full h-full object-cover"
+                      />
+                      {/* <Smartphone className="w-12 h-12 text-secondary/60 mx-auto mb-2" />
+                      <p className="text-sm text-muted-foreground">WhatsApp Bot Interface</p> */}
                     </div>
                   </div>
                   <p className="text-muted-foreground">

@@ -159,3 +159,10 @@ All colors MUST be HSL. Blue (sky), Green (agriculture), White (clean)
     transition: var(--transition-bounce);
   }
 }
+
+@font-face {
+  font-family: 'TeX Gyre Bonum';
+  src: url('/src/assets/fonts/texgyrebonum-bold.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}

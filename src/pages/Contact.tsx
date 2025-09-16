@@ -14,6 +14,7 @@ import {
   Send,
   CheckCircle
 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -37,9 +38,20 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
+      const { error } = await supabase
+        .from("contacts")
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            message: formData.message,
+          },
+        ]);
+
+      if (error) throw error;
       // TODO: Integrate with Supabase to save contact data
       // For now, simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // await new Promise(resolve => setTimeout(resolve, 1000));
 
       // Show success message
       toast({
@@ -106,8 +118,22 @@ const Contact = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold mb-1">Email</h3>
-                        <p className="text-muted-foreground">info@bajaklangit.com</p>
-                        <p className="text-sm text-muted-foreground">support@bajaklangit.com</p>
+                        <p className="text-muted-foreground">
+                          <a 
+                          href="mailto:info@bajaklangit.com" 
+                          className="text-sm text-muted-foreground hover:underline"
+                          >
+                            info@bajaklangit.com
+                          </a>
+                        </p>
+                        <p className="text-sm text-muted-foreground">
+                          <a 
+                          href="mailto:support@bajaklangit.com" 
+                          className="text-sm text-muted-foreground hover:underline"
+                          >
+                            support@bajaklangit.com
+                          </a>
+                        </p>
                       </div>
                     </div>
                   </CardContent>
@@ -122,7 +148,14 @@ const Contact = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold mb-1">Telepon</h3>
-                        <p className="text-muted-foreground">+62 21 1234 5678</p>
+                        <p className="text-muted-foreground">
+                        <a 
+                        href="tel:+6285797192870" 
+                        className="text-sm text-muted-foreground hover:underline"
+                        >
+                        +62 85797192870
+                        </a>
+                        </p>
                         <p className="text-sm text-muted-foreground">Senin - Jumat, 08:00 - 17:00 WIB</p>
                       </div>
                     </div>
@@ -138,7 +171,16 @@ const Contact = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold mb-1">WhatsApp</h3>
-                        <p className="text-muted-foreground">+62 812 3456 7890</p>
+                        <p className="text-muted-foreground">
+                         <a 
+                          href="https://wa.me/6285797192870" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="text-sm text-muted-foreground hover:underline"
+                          >
+                          +62 812 3456 7890
+                          </a>
+                        </p>
                         <p className="text-sm text-muted-foreground">Support 24/7 tersedia</p>
                       </div>
                     </div>
@@ -155,8 +197,13 @@ const Contact = () => {
                       <div>
                         <h3 className="font-semibold mb-1">Kantor Pusat</h3>
                         <p className="text-muted-foreground">
-                          Jl. Teknologi No. 123<br />
-                          Jakarta Selatan 12345
+                          <a 
+                          href="https://maps.app.goo.gl/xYVtehEscvYTYPTTA" 
+                          className="text-sm text-muted-foreground hover:underline"
+                          >
+                          JL. Jenderal Gatot Subroto No. 170 Kelurahan <br/>
+                          Gumuruh Kecamatan Batununggal Kota Bandung
+                          </a>
                         </p>
                       </div>
                     </div>

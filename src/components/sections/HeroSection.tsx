@@ -1,11 +1,25 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, CloudRain, Leaf, Plane } from "lucide-react";
+// import hero from "@/assets/sampul.png";
 
 const HeroSection = () => {
   return (
     <section className="relative overflow-hidden gradient-sky">
+      {/* <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${hero})` }}
+      />
+
+      <div className="absolute inset-0 bg-black/70" />
+
+      {/* Overlay warna semi-transparan */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white" />
+
+      {/* Gradient fade ke bawah */}
+      {/* <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gradient-sky" /> */}
       <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+      
       <div className="container relative px-4 py-20 md:px-6 lg:py-32">
         <div className="mx-auto max-w-4xl text-center">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl mb-6">
