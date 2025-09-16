@@ -4,9 +4,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Quote, Star } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 interface Testimonial {
-  id: string;
+  id: number;
   name: string;
   profession: string;
   sector: string;
@@ -17,11 +18,12 @@ interface Testimonial {
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // Placeholder testimonials (will be replaced by Supabase data when available)
+  // Placeholder testimonials (fallback when no data in Supabase)
   const placeholderTestimonials: Testimonial[] = [
     {
-      id: "1",
+      id: 1,
       name: "Ir. Bambang Sutrisno",
       profession: "Ketua Kelompok Tani Maju Sejahtera",
       sector: "Pertanian",
@@ -30,7 +32,7 @@ const Testimonials = () => {
       created_at: "2024-01-20"
     },
     {
-      id: "2",
+      id: 2,
       name: "Capt. Sari Indrawati",
       profession: "Pilot Senior Garuda Indonesia",
       sector: "Penerbangan",
@@ -39,7 +41,7 @@ const Testimonials = () => {
       created_at: "2024-02-15"
     },
     {
-      id: "3", 
+      id: 3, 
       name: "Drs. Ahmad Fauzi, MT",
       profession: "Site Manager PT Berau Coal",
       sector: "Pertambangan",
@@ -48,7 +50,7 @@ const Testimonials = () => {
       created_at: "2024-03-05"
     },
     {
-      id: "4",
+      id: 4,
       name: "Dr. Maya Sari, SP",
       profession: "Peneliti Balai Penelitian Tanaman Padi",
       sector: "Pertanian", 
@@ -57,7 +59,7 @@ const Testimonials = () => {
       created_at: "2024-02-28"
     },
     {
-      id: "5",
+      id: 5,
       name: "Ir. Rizky Pratama",
       profession: "Operations Manager Bandara Juanda",
       sector: "Penerbangan",
@@ -68,9 +70,31 @@ const Testimonials = () => {
   ];
 
   useEffect(() => {
-    // TODO: Fetch from Supabase when available
-    // For now, use placeholder data
-    setTestimonials(placeholderTestimonials);
+    const fetchTestimonials = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('testimonials')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (error) {
+          console.error('Error fetching testimonials:', error);
+          setTestimonials(placeholderTestimonials);
+        } else if (data && data.length > 0) {
+          setTestimonials(data);
+        } else {
+          // No data in Supabase, use placeholder
+          setTestimonials(placeholderTestimonials);
+        }
+      } catch (error) {
+        console.error('Error fetching testimonials:', error);
+        setTestimonials(placeholderTestimonials);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTestimonials();
   }, []);
 
   const getSectorColor = (sector: string) => {

@@ -5,9 +5,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Leaf, Plane, Mountain, Calendar, Eye } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 interface Project {
-  id: string;
+  id: number;
   title: string;
   sector: string;
   description: string;
@@ -19,11 +20,12 @@ const Projects = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  // Placeholder projects (will be replaced by Supabase data when available)
+  // Placeholder projects (fallback when no data in Supabase)
   const placeholderProjects: Project[] = [
     {
-      id: "1",
+      id: 1,
       title: "Optimasi Jadwal Tanam Padi - Karawang",
       sector: "Pertanian",
       description: "Implementasi sistem prediksi cuaca untuk optimasi jadwal tanam padi di wilayah Karawang, Jawa Barat. Proyek ini berhasil meningkatkan produktivitas petani sebesar 25% dengan mengurangi risiko gagal panen akibat cuaca ekstrem. Sistem menganalisis pola curah hujan, suhu, dan kelembaban untuk memberikan rekomendasi waktu tanam yang optimal.",
@@ -31,7 +33,7 @@ const Projects = () => {
       created_at: "2024-01-15"
     },
     {
-      id: "2", 
+      id: 2, 
       title: "Sistem Peringatan Cuaca Bandara Soekarno-Hatta",
       sector: "Penerbangan",
       description: "Pengembangan sistem peringatan dini cuaca ekstrem untuk Bandara Soekarno-Hatta. Sistem ini memberikan notifikasi real-time tentang kondisi cuaca yang berpotensi membahayakan operasi penerbangan, termasuk deteksi turbulensi, badai petir, dan angin kencang. Hasilnya mengurangi delay penerbangan sebesar 30%.",
@@ -39,7 +41,7 @@ const Projects = () => {
       created_at: "2024-02-20"
     },
     {
-      id: "3",
+      id: 3,
       title: "Monitoring Cuaca Tambang Batubara - Kalimantan",
       sector: "Pertambangan", 
       description: "Implementasi sistem monitoring cuaca untuk operasi tambang batubara di Kalimantan Timur. Sistem memberikan peringatan dini untuk kondisi cuaca yang dapat mengganggu operasi dan membahayakan keselamatan pekerja. Termasuk prediksi curah hujan tinggi yang berpotensi menyebabkan banjir di area tambang.",
@@ -49,9 +51,31 @@ const Projects = () => {
   ];
 
   useEffect(() => {
-    // TODO: Fetch from Supabase when available
-    // For now, use placeholder data
-    setProjects(placeholderProjects);
+    const fetchProjects = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('projects')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (error) {
+          console.error('Error fetching projects:', error);
+          setProjects(placeholderProjects);
+        } else if (data && data.length > 0) {
+          setProjects(data);
+        } else {
+          // No data in Supabase, use placeholder
+          setProjects(placeholderProjects);
+        }
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+        setProjects(placeholderProjects);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
   }, []);
 
   const getSectorIcon = (sector: string) => {
