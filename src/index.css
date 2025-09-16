@@ -10,27 +10,27 @@ All colors MUST be HSL. Blue (sky), Green (agriculture), White (clean)
 
 @layer base {
   :root {
-    /* Brand Colors - Sky and Agriculture Theme */
+    /* Brand Colors - New Ocean Blue Palette */
     --background: 0 0% 100%;
-    --foreground: 223 47% 23%;
+    --foreground: 0 0% 18%;
 
     --card: 0 0% 100%;
-    --card-foreground: 223 47% 23%;
+    --card-foreground: 0 0% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 223 47% 23%;
+    --popover-foreground: 0 0% 18%;
 
-    /* Primary: Sky Blue */
-    --primary: 200 100% 48%;
+    /* Primary: Honolulu Blue */
+    --primary: 201 100% 36%;
     --primary-foreground: 0 0% 100%;
-    --primary-light: 200 100% 85%;
-    --primary-dark: 200 100% 35%;
+    --primary-light: 201 100% 71%;
+    --primary-dark: 201 100% 25%;
 
-    /* Secondary: Agriculture Green */
-    --secondary: 159 64% 52%;
+    /* Secondary: Pacific Cyan */
+    --secondary: 190 100% 42%;
     --secondary-foreground: 0 0% 100%;
-    --secondary-light: 159 64% 85%;
-    --secondary-dark: 159 64% 40%;
+    --secondary-light: 190 100% 65%;
+    --secondary-dark: 190 100% 30%;
 
     /* Neutral Palette */
     --muted: 220 13% 96%;
@@ -49,14 +49,14 @@ All colors MUST be HSL. Blue (sky), Green (agriculture), White (clean)
     --radius: 0.75rem;
 
     /* Custom Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(200 100% 48%) 0%, hsl(159 64% 52%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(220 13% 98%) 100%);
-    --gradient-sky: linear-gradient(180deg, hsl(200 100% 95%) 0%, hsl(0 0% 100%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(201 100% 36%) 0%, hsl(190 100% 42%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(190 77% 95%) 100%);
+    --gradient-sky: linear-gradient(180deg, hsl(189 75% 90%) 0%, hsl(0 0% 100%) 100%);
     
     /* Shadows */
-    --shadow-card: 0 4px 6px -1px hsl(223 47% 23% / 0.1), 0 2px 4px -1px hsl(223 47% 23% / 0.06);
-    --shadow-hover: 0 10px 25px -3px hsl(223 47% 23% / 0.1), 0 4px 6px -2px hsl(223 47% 23% / 0.05);
-    --shadow-primary: 0 8px 25px -8px hsl(200 100% 48% / 0.4);
+    --shadow-card: 0 4px 6px -1px hsl(0 0% 18% / 0.1), 0 2px 4px -1px hsl(0 0% 18% / 0.06);
+    --shadow-hover: 0 10px 25px -3px hsl(0 0% 18% / 0.1), 0 4px 6px -2px hsl(0 0% 18% / 0.05);
+    --shadow-primary: 0 8px 25px -8px hsl(201 100% 36% / 0.4);
 
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -80,20 +80,20 @@ All colors MUST be HSL. Blue (sky), Green (agriculture), White (clean)
   }
 
   .dark {
-    --background: 223 47% 23%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 18%;
+    --foreground: 190 77% 95%;
 
-    --card: 223 47% 23%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 18%;
+    --card-foreground: 190 77% 95%;
 
-    --popover: 223 47% 23%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 18%;
+    --popover-foreground: 190 77% 95%;
 
-    --primary: 200 100% 55%;
-    --primary-foreground: 223 47% 23%;
+    --primary: 201 100% 55%;
+    --primary-foreground: 0 0% 18%;
 
-    --secondary: 159 64% 45%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 190 100% 55%;
+    --secondary-foreground: 0 0% 18%;
 
     --muted: 223 30% 30%;
     --muted-foreground: 215 20% 65%;

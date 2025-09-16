@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Cloud } from "lucide-react";
+import { Menu } from "lucide-react";
+import bajakLangitLogo from "@/assets/bajak-langit-logo.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,10 +27,12 @@ const Navigation = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
         {/* Logo */}
-        <Link to="/" className="flex items-center space-x-2 font-bold text-xl">
-          <div className="w-8 h-8 gradient-hero rounded-lg flex items-center justify-center">
-            <Cloud className="w-5 h-5 text-white" />
-          </div>
+        <Link to="/" className="flex items-center space-x-3 font-bold text-xl">
+          <img 
+            src={bajakLangitLogo} 
+            alt="Bajak Langit Logo" 
+            className="w-10 h-10 object-contain"
+          />
           <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Bajak Langit
           </span>
