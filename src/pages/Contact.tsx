@@ -38,20 +38,53 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
+      // Basic client-side validation
+      if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+        toast({
+          title: "Error",
+          description: "Semua field harus diisi.",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      // Validate email format
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        toast({
+          title: "Error",
+          description: "Format email tidak valid.",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      // Check rate limiting
+      const { data: rateLimitOk } = await supabase.rpc('check_contact_rate_limit', {
+        _email: formData.email.toLowerCase()
+      });
+
+      if (!rateLimitOk) {
+        toast({
+          title: "Terlalu Banyak Permintaan",
+          description: "Anda telah mengirim terlalu banyak pesan. Silakan coba lagi dalam 1 jam.",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      // Sanitize input data
+      const sanitizedData = {
+        name: formData.name.trim().slice(0, 100),
+        email: formData.email.toLowerCase().trim().slice(0, 255),
+        message: formData.message.trim().slice(0, 5000)
+      };
+
       const { error } = await supabase
         .from("contacts")
-        .insert([
-          {
-            name: formData.name,
-            email: formData.email,
-            message: formData.message,
-          },
-        ]);
+        .insert([sanitizedData]);
 
       if (error) throw error;
-      // TODO: Integrate with Supabase to save contact data
-      // For now, simulate form submission
-      // await new Promise(resolve => setTimeout(resolve, 1000));
 
       // Show success message
       toast({
@@ -66,7 +99,8 @@ const Contact = () => {
         message: ""
       });
 
-    } catch (error) {
+    } catch (error: any) {
+      console.error('Contact form error:', error);
       toast({
         title: "Error",
         description: "Terjadi kesalahan. Silakan coba lagi.",
