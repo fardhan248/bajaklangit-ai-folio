@@ -153,7 +153,7 @@ const Contact = () => {
                         href="tel:+6285797192870" 
                         className="text-sm text-muted-foreground hover:underline"
                         >
-                        +62 85797192870
+                        +62 857 9719 2870
                         </a>
                         </p>
                         <p className="text-sm text-muted-foreground">Senin - Jumat, 08:00 - 17:00 WIB</p>
@@ -178,7 +178,7 @@ const Contact = () => {
                           rel="noopener noreferrer" 
                           className="text-sm text-muted-foreground hover:underline"
                           >
-                          +62 812 3456 7890
+                          +62 857 9719 2870
                           </a>
                         </p>
                         <p className="text-sm text-muted-foreground">Support 24/7 tersedia</p>
