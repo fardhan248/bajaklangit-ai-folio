@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, LogOut, Settings } from "lucide-react";
+import { Menu } from "lucide-react";
 import bajakLangitLogo from "@/assets/logo_transparan.png";
 
 const Navigation = () => {
