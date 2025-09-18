@@ -15,10 +15,24 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@bajak_langit" />
     <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/pBuFPFpW4BSwUHRNpUlbzknhok33/social-images/social-1758069850875-sampul.png">
+    
+    <!-- n8n Chat Widget CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- n8n Chat Widget -->
+    <script type="module">
+      import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+      createChat({
+        webhookUrl: 'https://n8n-xiwohhct.runner.web.id/webhook/98763d53-258d-45d2-90cf-0d9ed6be150a/chat',
+        initialMessages: [
+          'Ahoy, sahabat langit! Kapten Langit siap membantu! Ada angin atau badai yang ingin kau ketahui, atau mungkin petualangan data cuaca yang akan kita mulai? Apa yang bisa Kapten bantu hari ini?'
+        ]
+      });
+    </script>
   </body>
 </html>
